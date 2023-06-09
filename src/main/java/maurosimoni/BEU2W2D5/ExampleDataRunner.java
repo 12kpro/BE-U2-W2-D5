@@ -3,6 +3,7 @@ package maurosimoni.BEU2W2D5;
 import com.github.javafaker.Faker;
 import lombok.extern.slf4j.Slf4j;
 import maurosimoni.BEU2W2D5.devices.DeviceService;
+import maurosimoni.BEU2W2D5.devices.DeviceState;
 import maurosimoni.BEU2W2D5.devices.DeviceType;
 import maurosimoni.BEU2W2D5.devices.Producers;
 import maurosimoni.BEU2W2D5.devices.payload.DeviceCreatePayload;
@@ -54,13 +55,12 @@ public class ExampleDataRunner implements CommandLineRunner {
     public void createDevices(){
         for (int i = 0; i < 10; i++) {
             try {
-
-                 UUID id = UUID.randomUUID();
-                 String model = faker.commerce().productName();
-                 Producers producer = faker.options().option(Producers.class);
-                 DeviceType type = faker.options().option(DeviceType.class);
-
-                DeviceCreatePayload device = new DeviceCreatePayload(id,model,producer,type);
+                UUID id = UUID.randomUUID();
+                String model = faker.commerce().productName();
+                Producers producer = faker.options().option(Producers.class);
+                DeviceType type = faker.options().option(DeviceType.class);
+                DeviceState state = faker.options().option(DeviceState.class);
+                DeviceCreatePayload device = new DeviceCreatePayload(id,model,producer,type,state);
                 deviceService.create(device);
             } catch (Exception e) {
                 System.out.println(e);
@@ -68,9 +68,3 @@ public class ExampleDataRunner implements CommandLineRunner {
         }
     }
 }
-
-//    private UUID id;
-//    private String model;
-//    private Producers producer;
-//    private String serial;
-//    private DeviceType type;
