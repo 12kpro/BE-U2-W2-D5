@@ -53,14 +53,14 @@ public class DeviceService {
         return deviceRepo.findByType(type,pageable);
     }
 
-    public Page<Device> findByModel(int page, int size, String sortBy, String model ) {
+    public Page<Device> findByModelLikeIgnoreCase(int page, int size, String sortBy, String model ) {
         if (size < 0)
             size = 10;
         if (size > 100)
             size = 100;
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
 
-        return deviceRepo.findByModelIgnoreCase(model,pageable);
+        return deviceRepo.findByModelLikeIgnoreCase(model,pageable);
     }
 
     public Page<Device> findByState(int page, int size, String sortBy, DeviceState state ) {

@@ -14,7 +14,11 @@ public interface DeviceRepository extends JpaRepository<Device, UUID> {
 
     Page<Device> findByType(DeviceType type, Pageable pageable);
 
-    Page<Device> findByModelIgnoreCase(String model, Pageable pageable);
+    Page<Device> findByModelLikeIgnoreCase(String model, Pageable pageable);
+
+    //Page<Device> findByModelIgnoreCase(String model, Pageable pageable);
+
+
 
     Page<Device> findByState(DeviceState state, Pageable pageable);
 

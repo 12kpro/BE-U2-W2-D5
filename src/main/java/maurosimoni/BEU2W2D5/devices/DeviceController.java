@@ -27,26 +27,26 @@ public class DeviceController {
                                @RequestParam(defaultValue = "id") String sortBy) {
         return deviceService.find(page, size, sortBy);
     }
-    // testata -> Ok risponde ma vuota
+    // testata -> Ok
     @GetMapping("/producers/{producer}")
     public Page<Device> getDeviceByProducer(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size,
                                             @PathVariable() Producers producer ) {
         return deviceService.findByProducer(page, size, "producer", producer);
     }
-    // testata -> 403??????
+    // testata -> Ok
     @GetMapping("/types/{type}")
     public Page<Device> getDeviceByType(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size,
                                             @PathVariable() DeviceType type ) {
         return deviceService.findByType(page, size, "type", type);
     }
-    // testata -> 403??????
+    // testata -> Ok risponde vuota su DB 3 row --> fix query??
     //Failed to convert value of type 'java.lang.String' to required type 'java.util.UUID'; Invalid UUID string: er
     @GetMapping("/models/{model}")
-    public Page<Device> findByModel(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size,
+    public Page<Device> findByModelLikeIgnoreCase(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size,
                                         @PathVariable() String model ) {
-        return deviceService.findByModel(page, size, "model", model);
+        return deviceService.findByModelLikeIgnoreCase(page, size, "model", model);
     }
-    // testata -> 403??????
+    // testata -> Ok
     @GetMapping("/states/{state}")
     public Page<Device> findByState(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size,
                                     @PathVariable() DeviceState state ) {
