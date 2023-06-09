@@ -1,5 +1,6 @@
 package maurosimoni.BEU2W2D5.devices;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class Device {
     @Enumerated(EnumType.STRING)
     private DeviceState state;
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonBackReference
     private User user;
 
     public Device(UUID id, String model, Producers producer, DeviceType type, DeviceState state) {

@@ -32,7 +32,8 @@ public class UsersController {
     public User getUser(@PathVariable UUID userId) throws Exception {
         return usersService.findById(userId);
     }
-    //Request method 'PUT' is not supported  --> testata
+
+     //Request method 'PUT' is not supported  --> testata
     @PutMapping("/{userId}")
     public User updateUser(@PathVariable UUID userId, @RequestBody User body) throws Exception {
         return usersService.findByIdAndUpdate(userId, body);

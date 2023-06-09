@@ -1,12 +1,15 @@
 package maurosimoni.BEU2W2D5.users;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import maurosimoni.BEU2W2D5.devices.Device;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -27,7 +30,11 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public User(String name, String surname, String userName,String email, String password) {
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @JsonManagedReference
+    private List<Device> devices = new ArrayList<>();
+
+    public User(String name, String surname, String userName, String email, String password) {
         super();
         this.userName = userName;
         this.name = name;
