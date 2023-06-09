@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>maurosimoni</groupId>
-	<artifactId>BEU2W2D4</artifactId>
+	<artifactId>BEU2W2D5</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>BEU2W2D4</name>
+	<name>BEU2W2D5</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
@@ -35,6 +35,11 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>

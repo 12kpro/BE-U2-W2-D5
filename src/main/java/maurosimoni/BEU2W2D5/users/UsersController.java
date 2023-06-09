@@ -1,7 +1,7 @@
 package maurosimoni.BEU2W2D5.users;
 
 import maurosimoni.BEU2W2D5.exception.NotFoundException;
-import maurosimoni.BEU2W2D5.users.payload.UserRegistrationPayload;
+import maurosimoni.BEU2W2D5.users.payload.UserCreatePayload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -24,7 +24,7 @@ public class UsersController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public User saveUser(@RequestBody @Validated UserRegistrationPayload body) {
+    public User saveUser(@RequestBody @Validated UserCreatePayload body) {
         return usersService.create(body);
     }
 

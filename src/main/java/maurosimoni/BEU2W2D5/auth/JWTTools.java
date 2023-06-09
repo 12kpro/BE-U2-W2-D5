@@ -14,8 +14,6 @@ import java.util.Date;
 @Component
 public class JWTTools {
 
-    // @Value("${spring.application.jwt.secret}") non funziona se le variabili sono
-    // statiche
     private static String secret;
     private static int expiration;
 
@@ -30,7 +28,7 @@ public class JWTTools {
     }
 
     static public String createToken(User u) {
-        String token = Jwts.builder().setSubject(u.getEmail()).setIssuedAt(new Date(System.currentTimeMillis()))
+        String token = Jwts.builder().setSubject(u.getUsername()).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(Keys.hmacShaKeyFor(secret.getBytes())).compact();
         return token;

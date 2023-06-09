@@ -19,7 +19,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue
     private UUID id;
-    //private String userName;
+    private String userName;
     private String name;
     private String surname;
     private String email;
@@ -27,8 +27,9 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public User(String name, String surname, String email, String password) {
+    public User(String name, String surname, String userName,String email, String password) {
         super();
+        this.userName = userName;
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -45,7 +46,7 @@ public class User implements UserDetails {
     @Override
     public String getUsername() {
         // TODO Auto-generated method stub
-        return this.email;
+        return this.userName;
     }
 
     @Override

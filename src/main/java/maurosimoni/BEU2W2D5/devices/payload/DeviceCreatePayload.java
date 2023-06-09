@@ -18,8 +18,13 @@ public class DeviceCreatePayload {
     private String model;
     @NotNull(message = "Il Produttore è obbligatorio")
     private Producers producer;
-    @NotNull(message = "Il Seriale è obbligatorio")
-    private String serial;
     @NotNull(message = "Il Tipo di dispositivo è obbligatorio")
     private DeviceType type;
+
+    public DeviceCreatePayload(@NotNull(message = "Il Seriale (Id) è obbligatorio") UUID id, @NotNull(message = "Il Modello è obbligatorio") String model, @NotNull(message = "Il Produttore è obbligatorio") Producers producer, @NotNull(message = "Il Tipo di dispositivo è obbligatorio") DeviceType type) {
+        this.id = id;
+        this.model = model;
+        this.producer = producer;
+        this.type = type;
+    }
 }

@@ -10,6 +10,8 @@ import java.util.UUID;
 public interface DeviceRepository extends JpaRepository<Device, UUID> {
     Page<Device> findByProducer(Producers producer, Pageable pageable);
 
+
+
     Page<Device> findByType(DeviceType type, Pageable pageable);
 
     Page<Device> findByModelIgnoreCase(String model, Pageable pageable);

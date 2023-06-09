@@ -4,6 +4,6 @@ import lombok.Getter;
 
 @Getter
 public class UserLoginPayload {
-    String email;
+    String userName;
     String password;
 }

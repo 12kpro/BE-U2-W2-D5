@@ -2,7 +2,7 @@ package maurosimoni.BEU2W2D5.users;
 
 import maurosimoni.BEU2W2D5.exception.BadRequestException;
 import maurosimoni.BEU2W2D5.exception.NotFoundException;
-import maurosimoni.BEU2W2D5.users.payload.UserRegistrationPayload;
+import maurosimoni.BEU2W2D5.users.payload.UserCreatePayload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,12 +17,11 @@ public class UsersService {
     @Autowired
     private UsersRepository usersRepo;
 
-    public User create(UserRegistrationPayload u) {
-        // TODO: check if email already exists
+    public User create(UserCreatePayload u) {
         usersRepo.findByEmail(u.getEmail()).ifPresent(user -> {
             throw new BadRequestException("Email " + user.getEmail() + " already in use!");
         });
-        User newUser = new User(u.getName(), u.getSurname(), u.getEmail(), u.getPassword());
+        User newUser = new User(u.getName(), u.getSurname(), u.getUserName(),u.getEmail(), u.getPassword());
         return usersRepo.save(newUser);
     }
 
@@ -37,13 +36,15 @@ public class UsersService {
     }
 
     public User findById(UUID id) throws NotFoundException {
-        return usersRepo.findById(id).orElseThrow(() -> new NotFoundException());
+        return usersRepo.findById(id).orElseThrow(() -> new NotFoundException("Utete con Id:" + id + "non trovato!!"));
     }
 
     public User findByEmail(String email) throws NotFoundException {
-        return usersRepo.findByEmail(email).orElseThrow(() -> new NotFoundException());
+        return usersRepo.findByEmail(email).orElseThrow(() -> new NotFoundException("Utete con email:" + email + "non trovato!!"));
     }
-
+    public User findByUserName(String username) throws NotFoundException {
+        return usersRepo.findByUserName(username).orElseThrow(() -> new NotFoundException("Utete:" + username + "non trovato!!"));
+    }
     public User findByIdAndUpdate(UUID id, User u) throws NotFoundException {
         User found = this.findById(id);
 

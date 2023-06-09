@@ -75,6 +75,9 @@ public class DeviceService {
     public Device findById(UUID id) throws NotFoundException {
         return deviceRepo.findById(id).orElseThrow(() -> new NotFoundException("Device con id" + id + "Non trovato"));
     }
+    public Device findByIdAndState(UUID id, DeviceState state) throws NotFoundException {
+        return deviceRepo.findByIdAndState(id, state).orElseThrow(() -> new NotFoundException("Device con id" + id + "Non disponibile o non esistente"));
+    }
 
     public Device findByIdAndUpdate(UUID id, Device d) throws NotFoundException {
         Device found = this.findById(id);
